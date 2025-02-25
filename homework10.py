@@ -33,16 +33,13 @@
 # print(list(map(lambda x:x ** 2, filtered1)))
 
 
-
-
-
-students = ["Alice", "Bob", "Charlie", "David"]
-scores = [85, 92, 78, 90]
-zipped1 = list(zip(students, scores))
-def bolshe80(n):
-    students, scores = n
-    return scores > 80
-
-filtered2 = filter(bolshe80, zipped1)
-enumarated = list(enumerate(filtered2, 1))
-print(list(enumarated))
+# students = ["Alice", "Bob", "Charlie", "David"]
+# scores = [85, 92, 78, 90]
+# zipped1 = list(zip(students, scores))
+# def bolshe80(n):
+    # students, scores = n
+    # return scores > 80
+# 
+# filtered2 = filter(bolshe80, zipped1)
+# enumarated = list(enumerate(filtered2, 1))
+# print(list(enumarated))
