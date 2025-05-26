@@ -1,0 +1,95 @@
+psql -U hello -d shakespear -f /home/hello/Загрузки/shakespeare.sql - так я сдедал что бы импортировать sql в БД который я создал
+
+1.
+shakespear=# SELECT stemtext, COUNT(*) AS skolko
+FROM wordform
+GROUP BY stemtext
+ORDER BY skolko DESC
+LIMIT 10;
+
+РЕЗУЛЬТАТ:
+ stemtext | skolko 
+----------+--------
+ depend   |     11
+ observ   |     11
+ person   |     10
+ affect   |     10
+ accus    |     10
+ sever    |     10
+ command  |     10
+ continu  |      9
+ expect   |      9
+ corrupt  |      9
+(10 rows)
+
+2.
+shakespear=# SELECT DISTINCT stemtext
+FROM wordform
+WHERE LOWER(stemtext) LIKE 'a%';
+
+3.
+shakespear=# SELECT title
+FROM work
+WHERE LOWER(work.genretype) LIKE '%p%';
+
+РЕЗУЛЬТАТ:
+         title          
+------------------------
+ Lover's Complaint
+ Passionate Pilgrim
+ Phoenix and the Turtle
+ Rape of Lucrece
+ Venus and Adonis
+(5 rows)
+
+4.
+shakespear=# SELECT AVG(totalparagraphs)
+FROM work
+WHERE LOWER(work.genretype) LIKE '%t%';
+
+РЕЗУЛЬТАТ:
+          avg          
+-----------------------
+ 1070.8181818181818182
+(1 row)
+
+5.
+shakespear=# SELECT title, totalwords
+FROM work
+WHERE totalwords > (
+  SELECT AVG(totalwords) FROM work
+);
+
+РЕЗУЛЬТАТ:
+           title           | totalwords 
+---------------------------+------------
+ All's Well That Ends Well |      22997
+ Antony and Cleopatra      |      24905
+ As You Like It            |      21690
+ Coriolanus                |      27577
+ Cymbeline                 |      27565
+ Hamlet                    |      30558
+ Henry IV, Part I          |      24579
+ Henry IV, Part II         |      25692
+ Henry V                   |      26119
+ Henry VI, Part I          |      21575
+ Henry VI, Part II         |      25411
+ Henry VI, Part III        |      24284
+ Henry VIII                |      24629
+ King John                 |      20760
+ King Lear                 |      26119
+ Love's Labour's Lost      |      21450
+ Measure for Measure       |      21773
+ Merchant of Venice        |      21291
+ Merry Wives of Windsor    |      21845
+ Much Ado about Nothing    |      21157
+ Othello                   |      26450
+ Richard II                |      22411
+ Richard III               |      29278
+ Romeo and Juliet          |      24553
+ Taming of the Shrew       |      21055
+ Titus Andronicus          |      20710
+ Troilus and Cressida      |      26089
+ The Winter's Tale         |      24914
+(28 rows)
+
