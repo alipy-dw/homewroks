@@ -93,3 +93,5 @@ WHERE totalwords > (
  The Winter's Tale         |      24914
 (28 rows)
 
+6.
+SELECT charname 
